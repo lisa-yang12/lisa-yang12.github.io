@@ -1,7 +1,16 @@
+var default_incident_summary = "Please help with an incident";
+
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
+    return results === null ? null : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function getHashParameterByName(name, isHash) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.hash);
     return results === null ? null : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
@@ -19,7 +28,7 @@ function generateRandomState(length) {
 
 function requestOAuthToken() {
     var state = generateRandomState(16);
-    window.localStorage.setItem('pdvisClientState', state);
+    window.localStorage.setItem('pdClientState', state);
     var clientId = "36020773f6d2beb61da826d31c4ac7ed9c761ed112e3282b56070013df8d8498";
     var redirectUri = "https://martindstone.github.io/PDsimplepageout/index.html";
     var oauthRoute = "https://app.pagerduty.com/oauth/authorize?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&response_type=token&state=" + state;
@@ -39,21 +48,21 @@ function getOAuthResponseParams() {
 }
 
 function receiveOAuthToken(oauthParams) {
-    var state = window.localStorage.getItem('pdvisClientState');
+    var state = window.localStorage.getItem('pdClientState');
     if (oauthParams.state !== state) {
         alert("ERROR: OAuth failed due to bad state. Can't access PagerDuty API without OAuth");
         return;
     }
-    window.localStorage.setItem('pdvisOAuthToken', oauthParams.token);
+    window.localStorage.setItem('pdOAuthToken', oauthParams.token);
 }
 
 function removeOAuthToken() {
-    window.localStorage.removeItem('pdvisOAuthToken');
-    window.localStorage.removeItem('pdvisClientState');
+    window.localStorage.removeItem('pdOAuthToken');
+    window.localStorage.removeItem('pdClientState');
 }
 
 function getToken() {
-    return window.localStorage.getItem('pdvisOAuthToken');
+    return window.localStorage.getItem('pdOAuthToken');
 }
 
 function PDRequest(token, endpoint, method, options) {
@@ -63,7 +72,7 @@ function PDRequest(token, endpoint, method, options) {
             dataType: "json",
             url: "https://api.pagerduty.com/" + endpoint,
             headers: {
-                "Authorization": "Token token=" + token,
+                "Authorization": "Bearer " + token,
                 "Accept": "application/vnd.pagerduty+json;version=2"
             },
             error: function(err, textStatus) {
@@ -126,54 +135,81 @@ function fetch(token, endpoint, params, callback, progressCallback) {
     PDRequest(token, endpoint, "GET", options);
 }
 
-// function populateEPSelect() {
-//     var token = $('#pd_token').val();
-//     fetch(token, 'escalation_policies', null, function(data) {
-//         data.forEach(function(ep) {
-//             $('#ep-select').append($('<option/>', {
-//                 value: ep.id,
-//                 text: ep.summary
-//             }));
-//         });
-//     });
-// }
+function populateUserSelect() {
+    var token = getToken();
+    fetch(token, 'users', null, function(data) {
+        data.forEach(function(user) {
+            $('#user-select').append($('<option/>', {
+                value: user.id,
+                text: user.summary
+            }));
+        });
+    });
+}
 
-// function populateAGSelect() {
-// 	var snow_user = $('#snow_admin_user').val();
-// 	var snow_pass = $('#snow_admin_pass').val();
-// 	var snow_host = $('#snow_host').val();
+function populateServiceSelect() {
+    var token = getToken();
+    fetch(token, 'services', null, function(data) {
+        data.forEach(function(service) {
+            $('#service-select').append($('<option/>', {
+                value: service.id,
+                text: service.summary
+            }));
+        });
+    });
+}
 
-// 	var hash = btoa(`${snow_user}:${snow_pass}`);
-// 	console.log(`${snow_user}:${snow_pass} ${snow_host} ${hash} ${atob(hash)}`);
-// 	var options = {
-// 		type: 'GET',
-// 		url: `https://cors-anywhere.herokuapp.com/https://${snow_host}.service-now.com/api/now/table/sys_user_group`,
-// 		headers: {
-// 			'Authorization': `Basic ${hash}`,
-// 			'Accept': 'application/json'
-// 		},
-// 		success: function(data) {
-// 			console.log(data);
-// 			data.result.sort(function(a, b) {
-// 				return a.name.localeCompare(b.name);
-// 			});
-// 			data.result.forEach(function(ag) {
-// 				$('#ag-select').append($('<option/>', {
-// 					value: ag.sys_id,
-// 					text: ag.name
-// 				}));
-// 			});
-// 		},
-// 		error: function(err) {
-// 			console.log(err)
-// 		}
-// 	}
+function createIncident() {
+    var token = getToken();
+    var user_id = $('#user-select').val();
+    var service_id = $('#service-select').val();
+    var incident_summary = $('#incident-text').val();
+    if ( incident_summary.trim() == "" ) {
+        incident_summary = default_incident_summary;
+    }
+    var body = {
+        "incident": {
+            "type": "incident",
+            "title": incident_summary,
+            "service":
+            {
+                "id": service_id,
+                "type": "service_reference"
+            },
+            "urgency": "high",
+            "body":
+            {
+                "type": "incident_body",
+                "details": incident_summary
+            },
+            "assignments": [
+                {
+                    "assignee": {
+                        "type": "user_reference",
+                        "id": user_id
+                    }
+                }
+            ]
+        }
+    };
 
-// 	$.ajax(options);
-// }
+    var options = {
+        contentType: "application/json",
+        data: JSON.stringify(body),
+        success: function(data) {
+            $('#result').append(`Created <a target="_blank" href="${data.incident.html_url}">Incident #${data.incident.incident_number}</a> for ${$('#user-select option:selected').text()}<br>`);
+            console.log(data);
+        },
+        error: function(data) {
+            $('#result').append("Error creating incident<br>");
+            $('#result').append(data);
+        }
+    }
+
+    PDRequest(token, 'incidents', 'POST', options)
+}
 
 function main() {
-    
     $('#login').click(function(e) {
         requestOAuthToken();
     });
@@ -181,7 +217,7 @@ function main() {
         removeOAuthToken();
         $('#login').show();
         $('#logout').hide();
-        $('#addon-content').hide();
+        $('#content').hide();
         $('.busy').hide();
     });
 
@@ -189,7 +225,7 @@ function main() {
         var oauthResponseParams = getOAuthResponseParams();
         if (!oauthResponseParams.token && !oauthResponseParams.state) {
             // normal page load - when a user visits the addon page
-            $('#addon-content').hide();
+            $('#content').hide();
             $('.busy').hide();
             $('#logout').hide();
             return;
@@ -197,11 +233,18 @@ function main() {
             // page load when being redirected from PagerDuty OAuth service
             receiveOAuthToken(oauthResponseParams);
 
-            $('#addon-content').show();
+            $('#content').show();
             $('#logout').show();
             $('#login').hide();
         }
     }
+
+    $('#login').hide();
+
+    $('#incident-text').attr("placeholder", default_incident_summary);
+    populateUserSelect();
+    populateServiceSelect();
+    $('#go').click(createIncident);
 }
 
 $(document).ready(main);
