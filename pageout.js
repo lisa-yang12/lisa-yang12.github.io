@@ -20,8 +20,8 @@ function generateRandomState(length) {
 function requestOAuthToken() {
     var state = generateRandomState(16);
     window.localStorage.setItem('pdvisClientState', state);
-    var clientId = "309e47d2fb081868b34ce61295b19177e1bbdbcbc8ebb7c216d46f0cd3ece7ac";
-    var redirectUri = "https://pagerduty.github.io/addons/PDvis/index.html";
+    var clientId = "36020773f6d2beb61da826d31c4ac7ed9c761ed112e3282b56070013df8d8498";
+    var redirectUri = "https://martindstone.github.io/PDsimplepageout/index.html";
     var oauthRoute = "https://app.pagerduty.com/oauth/authorize?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&response_type=token&state=" + state;
     window.location.href = oauthRoute;
 }
