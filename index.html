@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PagerDuty snowlink</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="snowlink.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid" style="padding-top: 20px;">
+        <div class="row">
+            <div class="col-md-4" id="menu">
+                <p>
+                    PD API Token:
+                    <input type="text" id="pd_token">
+                </p>
+                <p>
+                    SNOW hostname:
+                    <input type="text" id="snow_host">
+                </p>
+            </div>
+            <div class="col-md-4" id="menu2">
+                <p>
+                    SNOW admin user:
+                    <input type="text" class="admin" id="snow_admin_user">
+                </p>
+                <p>
+                    SNOW admin pass:
+                    <input type="text" class="admin" id="snow_admin_pass">
+                </p>
+                <p>
+                    SNOW pd-integration user:
+                    <input type="text" id="snow_int_user">
+                </p>
+                <p>
+                    SNOW pd-integration pass:
+                    <input type="text" id="snow_int_pass">
+                </p>
+            </div>
+            <div class="col-md-4" id="menu3">
+                <p>
+                    <button class="btn btn-default" id="go">Get Info</button>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" id="select">
+                <select id="ag-select"></select> ->
+                <select id="ep-select"></select>
+                <button class="btn btn-default" id="link">Link</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/async/2.1.2/async.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="snowlink.js"></script>
+</body>
