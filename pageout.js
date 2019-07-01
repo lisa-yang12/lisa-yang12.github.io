@@ -30,7 +30,7 @@ function requestOAuthToken() {
     var state = generateRandomState(16);
     window.localStorage.setItem('pdClientState', state);
     var clientId = "cce46eeac88f5d9195501368d47b71444dbeff04d74ae4df804b61c6f64d7517";
-    var redirectUri = "https://lisa-yang12.github.io/PDsimplepageout/index.html";
+    var redirectUri = "https://lisa-yang12.github.io/";
     var oauthRoute = "https://app.pagerduty.com/oauth/authorize?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&response_type=token&state=" + state;
     window.location.href = oauthRoute;
 }
