@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PagerDuty Simple Pageout</title>
+    <title>PagerDuty Signet Resolve</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="pageout.css" rel="stylesheet">
 </head>
@@ -14,7 +14,7 @@
     <div class="container-fluid" style="padding-top: 20px;">
         <div class="row">
             <div class="col-md-4">
-                <button type="button" id="login" class="btn btn-outline-primary">Sign in to PagerDuty to get started Master</button>
+                <button type="button" id="login" class="btn btn-outline-primary">Sign in to PagerDuty to get started</button>
             </div>
             <div class="col-md-4" align="right">
                 <button type="button" id="logout" class="btn btn-outline-primary">Logout</button>
@@ -23,10 +23,14 @@
         <div id="content">
             <div class="row">
                 <div class="col-md-4">
-                    <label for="change1-select">Was this Incident caused by a Change?</label><select class="form-control" id="change1-select"></select>
+                    <label for="change-select">Was this Incident caused by a Change?</label><select class="form-control" id="change-select"><option>None</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option></select>
                 </div>
                 <div class="col-md-4">
-                    <label for="ci-select">Have you verified that the correct CI has been selected?:</label><select class="form-control" id="ci-select"></select>
+                    <label for="ci-select">Have you verified that the correct CI has been selected?</label><select class="form-control" id="ci-select"><option>None</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option></select>
                 </div>
             </div>
             <div class="row">
@@ -35,7 +39,9 @@
             <div class="row">
                 <div class="col-md-8">
                     <label for="problem-select">Should this be flagged for Problem Management?</label>
-                    <select class="form-control" id="problem-select"></select>
+                    <select class="form-control" id="problem-select"><option>None</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option></select>
                 </div>
             </div>
             <div class="row">
@@ -58,5 +64,5 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/async/2.1.2/async.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="pageout.js"></script>
+    <script src="SignetResolve.js"></script>
 </body>
