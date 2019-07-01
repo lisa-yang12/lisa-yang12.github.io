@@ -188,12 +188,12 @@ function resolveIncident() {
             console.log(data);
         },
         error: function(data) {
-            $('#result').append("Error creating incident<br>");
+            $('#result').append("Error creating note<br>");
             $('#result').append(data);
         }
     }
 
-    PDRequest(token, 'incidents'+ incidentID + '/notes', 'POST', options)
+    PDRequest(token, 'incidents/'+ incidentID + '/notes', 'POST', options)
 }
 
 function main() {
