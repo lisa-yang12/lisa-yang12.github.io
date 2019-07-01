@@ -228,9 +228,9 @@ function main() {
 
     $('#login').hide();
 
-    $('#incident-text').attr("placeholder", default_incident_summary);
-    populateUserSelect();
-    populateServiceSelect();
+    //$('#incident-text').attr("placeholder", default_incident_summary);
+    //populateUserSelect();
+    //populateServiceSelect();
     $('#go').click(resolveIncident);
 }
 
