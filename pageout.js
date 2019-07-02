@@ -228,7 +228,8 @@ function resolveIncident() {
         contentType: "application/json",
         data: JSON.stringify(body),
         success: function(data) {
-            if (change == 'Yes'){
+            if (change == 'yes'){
+                $('#result').css('color','red');
                 $('#result').append('ServiceNow Resolution Updated, you can now resolve the PagerDuty Incident. Please log into ServiceNow to complete the resolution form.');
             }
             else {
