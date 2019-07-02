@@ -192,7 +192,7 @@ function resolveIncident() {
         }
     };
     if (change == "None" || service == "None" || problem == "None"){
-        $('#result').append("Please answer all the questions.");
+        $('#result').html("Please answer all the questions.");
         return;
     }
     
@@ -202,10 +202,10 @@ function resolveIncident() {
         success: function(data) {
             if (change == 'yes'){
                 $('#result').css('color','red');
-                $('#result').append('ServiceNow Resolution Updated, please log into ServiceNow to complete the resolution form.');
+                $('#result').html('ServiceNow Resolution Updated, please log into ServiceNow to complete the resolution form.');
             }
             else {
-                $('#result').append('ServiceNow Resolution Updated, you can now resolve the PagerDuty Incident.');
+                $('#result').html('ServiceNow Resolution Updated, you can now resolve the PagerDuty Incident.');
             }
             console.log(data);
             $('#go').hide();
