@@ -191,7 +191,11 @@ function resolveIncident() {
             "content": "from Resolve Form: {Problem: " + problem + ", service: " + service + ", change: " + change + "}"
         }
     };
-
+    if (change == "None" || service == "None" || problem == "None"){
+        $('#result').append("Please answer all the questions.");
+        return;
+    }
+    
     var options = {
         contentType: "application/json",
         data: JSON.stringify(body),
