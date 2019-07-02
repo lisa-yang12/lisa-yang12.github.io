@@ -82,7 +82,8 @@ function PDRequest(token, endpoint, method, options) {
             url: "https://api.pagerduty.com/" + endpoint,
             headers: {
                 "Authorization": "Bearer " + token,
-                "Accept": "application/vnd.pagerduty+json;version=2"
+                "Accept": "application/vnd.pagerduty+json;version=2",
+                "From": "lyang@pagerduty.com" //needs to be more dynamic
             },
             error: function(err, textStatus) {
             	console.log(err);
