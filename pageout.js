@@ -198,7 +198,7 @@ var from = "";
         error: function(data) {
             console.log("Error creating note<br>");
         }
-    PDRequest(token, endpoint, method, options)
+    PDRequest(token, endpoint, method, options);
 }
 
 function resolveIncident() {
