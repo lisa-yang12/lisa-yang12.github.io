@@ -186,12 +186,6 @@ function resolveIncident() {
     console.log(service);
     var problem = $('#problem-select').val();
     console.log(problem);
-    if (change == "None" || service == "None" || problem == "None"){
-                $('#go').hide();
-            }
-            else{
-                $('#go').show();
-            }
     var body = {
         "note": {
             "content": "from Resolve Form: {Problem: " + problem + ", service: " + service + ", change: " + change + "}"
@@ -210,7 +204,7 @@ function resolveIncident() {
                 $('#result').append('ServiceNow Resolution Updated, you can now resolve the PagerDuty Incident.');
             }
             console.log(data);
-            //$('#go').hide();
+            $('#go').hide();
             
         },
         error: function(data) {
