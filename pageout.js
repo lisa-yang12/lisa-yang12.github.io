@@ -74,9 +74,6 @@ console.log("incident id " + url);
 } */
 
 function getIncidentID(){
-//console.log("location.search "+ location.search);
-//console.log("document.referrer " + document.referrer);
-//console.log("document.location.href "+ document.location.href);
 var url = (window.location != window.parent.location)
             ? document.referrer
             : document.location.href;
@@ -159,30 +156,6 @@ function fetch(token, endpoint, params, callback, progressCallback) {
     PDRequest(token, endpoint, "GET", options);
 }
 
-function populateUserSelect() {
-    var token = getToken();
-    fetch(token, 'users', null, function(data) {
-        data.forEach(function(user) {
-            $('#user-select').append($('<option/>', {
-                value: user.id,
-                text: user.summary
-            }));
-        });
-    });
-}
-
-function populateServiceSelect() {
-    var token = getToken();
-    fetch(token, 'services', null, function(data) {
-        data.forEach(function(service) {
-            $('#service-select').append($('<option/>', {
-                value: service.id,
-                text: service.summary
-            }));
-        });
-    });
-}
-
 /*function getFromHeader(){
 var token = getToken();
 var endpoint = 'users/me';
@@ -213,11 +186,12 @@ function resolveIncident() {
     console.log(service);
     var problem = $('#problem-select').val();
     console.log(problem);
-    /*var content = {
-            "change": change,
-            "service": service,
-            "problem": problem
-            }; */
+    if (change == "None" || service == "None" || problem == "None"){
+                $('#go').hide();
+            }
+            else{
+                $('#go').show();
+            }
     var body = {
         "note": {
             "content": "from Resolve Form: {Problem: " + problem + ", service: " + service + ", change: " + change + "}"
@@ -236,7 +210,8 @@ function resolveIncident() {
                 $('#result').append('ServiceNow Resolution Updated, you can now resolve the PagerDuty Incident.');
             }
             console.log(data);
-            $('#go').hide();
+            //$('#go').hide();
+            
         },
         error: function(data) {
             $('#result').append("Error updated ServiceNow Incident<br>");
