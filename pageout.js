@@ -78,7 +78,9 @@ var url = (window.location != window.parent.location)
             ? document.referrer
             : document.location.href;
 var regEx = /incidents\/(.*)/;
- return regEx.exec(url)[1]
+var num = regEx.exec(url)[1];
+var id = num.split('/');
+ return id[0];
 }
 
 function PDRequest(token, endpoint, method, options) {
