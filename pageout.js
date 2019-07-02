@@ -74,9 +74,9 @@ console.log("incident id " + url);
 } */
 
 function getIncidentID(){
-console.log("location.search "+ location.search);
-console.log("document.referrer " + document.referrer);
-console.log("document.location.href "+ document.location.href);
+//console.log("location.search "+ location.search);
+//console.log("document.referrer " + document.referrer);
+//console.log("document.location.href "+ document.location.href);
 var url = (window.location != window.parent.location)
             ? document.referrer
             : document.location.href;
