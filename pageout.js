@@ -193,14 +193,14 @@ function resolveIncident() {
     console.log(service);
     var problem = $('#problem-select').val();
     console.log(problem);
-    var content = {
+    /*var content = {
             "change": change,
             "service": service,
             "problem": problem
-            }; 
+            }; */
     var body = {
         "note": {
-            "content": "Problem: " + problem + " service: " + service + " change: " + change;
+            "content": "Problem: " + problem + " service: " + service + " change: " + change
         }
     };
 
