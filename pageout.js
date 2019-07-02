@@ -220,7 +220,7 @@ function resolveIncident() {
             }; */
     var body = {
         "note": {
-            "content": "{Problem: " + problem + ", service: " + service + ", change: " + change + "}"
+            "content": "from Resolve Form: {Problem: " + problem + ", service: " + service + ", change: " + change + "}"
         }
     };
 
