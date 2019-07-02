@@ -67,9 +67,10 @@ function getToken() {
 
 //grab incident ID from URL and regEx out
 function getIncidentID(){
-var url = (window.location != window.parent.location)
+/*var url = (window.location != window.parent.location)
             ? document.referrer
-            : document.location.href;
+            : document.location.href; */
+var url = window.location.href; 
 var regEx = /incidents\/(.*)/;
  return regEx.exec(url)[1]
 }
