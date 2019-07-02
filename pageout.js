@@ -76,6 +76,7 @@ var regEx = /incidents\/(.*)/;
     console.log(regEx.exec(url)[1]); */
     var urlsplit = document.referrer.split('/');
 	var incident_id = urlsplit[urlsplit.length - 1];
+	console.log("incident id " + incident_id);
  //return regEx.exec(url)[1]
     return incident_id
 }
