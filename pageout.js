@@ -190,9 +190,14 @@ function resolveIncident() {
     console.log(service);
     var problem = $('#problem-select').val();
     console.log(problem);
+    var content = {
+            "change": change,
+            "service": service,
+            "problem": problem
+            }; 
     var body = {
         "note": {
-            "content": change + " " + service + " " + problem
+            "content": JSON.stringify(content);
         }
     };
 
