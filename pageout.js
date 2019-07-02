@@ -71,7 +71,9 @@ function getIncidentID(){
             ? document.referrer
             : document.location.href; */
 var url = window.location.href; 
+    console.log(url);
 var regEx = /incidents\/(.*)/;
+    console.log(regEx.exec(url)[1]);
  return regEx.exec(url)[1]
 }
 
