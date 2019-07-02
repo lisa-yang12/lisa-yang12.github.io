@@ -65,12 +65,20 @@ function getToken() {
     return window.localStorage.getItem('pdOAuthToken');
 }
 
-//grab incident ID from URL and regEx out
+/*//grab incident ID from URL and regEx out
 function getIncidentID(){
 var r = /\/incidents\/([\w]+)\//;
 var url = r.exec(window.top.location.href)[1];
 console.log("incident id " + url);
     return url
+} */
+
+function getIncidentID(){
+var url = (window.location != window.parent.location)
+            ? document.referrer
+            : document.location.href;
+var regEx = /incidents\/(.*)/;
+ return regEx.exec(url)[1]
 }
 
 function PDRequest(token, endpoint, method, options) {
