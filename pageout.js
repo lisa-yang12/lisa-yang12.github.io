@@ -228,11 +228,17 @@ function resolveIncident() {
         contentType: "application/json",
         data: JSON.stringify(body),
         success: function(data) {
-            $('#result').append('Resolution Note created');
+            if (change == 'Yes'){
+                $('#result').append('ServiceNow Resolution Updated, you can now resolve the PagerDuty Incident. Please log into ServiceNow to complete the resolution form.');
+            }
+            else {
+                $('#result').append('ServiceNow Resolution Updated, you can now resolve the PagerDuty Incident.');
+            }
             console.log(data);
+            $('#go').hide();
         },
         error: function(data) {
-            $('#result').append("Error creating note<br>");
+            $('#result').append("Error updated ServiceNow Incident<br>");
             $('#result').append(data);
         }
     }
