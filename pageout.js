@@ -78,8 +78,9 @@ var url = (window.location != window.parent.location)
             ? document.referrer
             : document.location.href;
 var regEx = /incidents\/(.*)/;
-var num = regEx.exec(url)[1];
-var id = num.split('/');
+var output = regEx.exec(url)[1];
+var id = output.split('/');
+ console.log("incident id " + id[0]);
  return id[0];
 }
 
