@@ -200,7 +200,7 @@ function resolveIncident() {
             }; 
     var body = {
         "note": {
-            "content": JSON.stringify(content);
+            "content": content.toString();
         }
     };
 
@@ -255,6 +255,16 @@ function main() {
     //$('#incident-text').attr("placeholder", default_incident_summary);
     //populateUserSelect();
     //populateServiceSelect();
+    try {
+    console.log(location.search);
+    console.log(document.referrer);
+    console.log(document.location.href);
+    console.log(window.location.href);
+    console.log(window.parent.location.href);    
+} catch(e) {
+        console.log(e);
+}
+    
     $('#go').click(resolveIncident);
 }
 
