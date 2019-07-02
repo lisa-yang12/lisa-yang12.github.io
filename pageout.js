@@ -173,9 +173,13 @@ function populateServiceSelect() {
 function resolveIncident() {
     var token = getToken();
     var incidentID = getIncidentID();
+    console.log(incidentID);
     var change = $('#change-select').val();
+    console.log(change);
     var service = $('#ci-select').val();
+    console.log(service);
     var problem = $('#problem-select').val();
+    console.log(problem);
     var body = {
         "note": {
             "content": change + " " + service + " " + problem
