@@ -190,7 +190,6 @@ var method = 'GET'
 var from = "";
    var options = {
         contentType: "application/json",
-        data: JSON.stringify(body),
         success: function(data) {
             from.append(data.email);
             console.log(data);
