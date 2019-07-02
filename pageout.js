@@ -91,7 +91,7 @@ function PDRequest(token, endpoint, method, options) {
 
     var merged = $.extend(true, {}, {
             type: method,
-            dataType: "json",
+            //dataType: "json",
             url: "https://api.pagerduty.com/" + endpoint,
             headers: {
                 "Authorization": "Bearer " + token,
@@ -183,6 +183,8 @@ function populateServiceSelect() {
     });
 }
 
+
+
 function resolveIncident() {
     var token = getToken();
     var incidentID = getIncidentID();
@@ -200,7 +202,7 @@ function resolveIncident() {
             }; */
     var body = {
         "note": {
-            "content": "Problem: " + problem + " service: " + service + " change: " + change
+            "content": "{Problem: " + problem + ", service: " + service + ", change: " + change + "}"
         }
     };
 
