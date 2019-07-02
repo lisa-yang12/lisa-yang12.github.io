@@ -230,7 +230,7 @@ function resolveIncident() {
         success: function(data) {
             if (change == 'yes'){
                 $('#result').css('color','red');
-                $('#result').append('ServiceNow Resolution Updated, you can now resolve the PagerDuty Incident. Please log into ServiceNow to complete the resolution form.');
+                $('#result').append('ServiceNow Resolution Updated, please log into ServiceNow to complete the resolution form.');
             }
             else {
                 $('#result').append('ServiceNow Resolution Updated, you can now resolve the PagerDuty Incident.');
