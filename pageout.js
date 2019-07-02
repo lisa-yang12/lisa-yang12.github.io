@@ -74,11 +74,11 @@ var url = window.location.href;
     console.log(url);
 var regEx = /incidents\/(.*)/;
     console.log(regEx.exec(url)[1]); */
-    var urlsplit = window.location.href.split('/');
-	var incident_id = urlsplit[urlsplit.length - 1];
-	console.log("incident id " + incident_id);
+  var r = /\/incidents\/([\w]+)\//;
+var url = r.exec(window.location.href)[1];
+	console.log("incident id " + url);
  //return regEx.exec(url)[1]
-    return incident_id
+    return url
 }
 
 function PDRequest(token, endpoint, method, options) {
