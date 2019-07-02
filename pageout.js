@@ -189,7 +189,7 @@ var endpoint = 'users/me';
 var method = 'GET'
 var from = "";
    var options = {
-        Content-Type: "application/json",
+        contentType: "application/json",
         data: JSON.stringify(body),
         success: function(data) {
             from.append(data.email);
