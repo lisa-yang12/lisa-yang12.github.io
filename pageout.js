@@ -183,7 +183,23 @@ function populateServiceSelect() {
     });
 }
 
-
+function getFromHeader(){
+var token = getToken();
+var endpoint = 'users/me';
+var method = 'GET'
+var from = "";
+   var options = {
+        Content-Type: "application/json",
+        data: JSON.stringify(body),
+        success: function(data) {
+            from.append(data.email);
+            console.log(data);
+        },
+        error: function(data) {
+            console.log("Error creating note<br>");
+        }
+    PDRequest(token, endpoint, method, options)
+}
 
 function resolveIncident() {
     var token = getToken();
