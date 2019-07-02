@@ -200,7 +200,7 @@ function resolveIncident() {
             }; 
     var body = {
         "note": {
-            "content": content.toString();
+            "content": "Problem: " + problem + " service: " + service + " change: " + change;
         }
     };
 
