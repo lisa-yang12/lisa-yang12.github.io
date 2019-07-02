@@ -69,12 +69,15 @@ function getToken() {
 function getIncidentID(){
 /*var url = (window.location != window.parent.location)
             ? document.referrer
-            : document.location.href; */
+            : document.location.href; 
 var url = window.location.href; 
     console.log(url);
 var regEx = /incidents\/(.*)/;
-    console.log(regEx.exec(url)[1]);
- return regEx.exec(url)[1]
+    console.log(regEx.exec(url)[1]); */
+    var urlsplit = document.referrer.split('/');
+	var incident_id = urlsplit[urlsplit.length - 1];
+ //return regEx.exec(url)[1]
+    return incident_id
 }
 
 function PDRequest(token, endpoint, method, options) {
