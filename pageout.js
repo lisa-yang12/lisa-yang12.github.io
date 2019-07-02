@@ -88,7 +88,7 @@ var id = output.split('/');
 }
 
 function PDRequest(token, endpoint, method, options) {
-    var from = getFromHeader();
+    var from = "lyang@pagerduty.com";
     var merged = $.extend(true, {}, {
             type: method,
             //dataType: "json",
@@ -183,7 +183,7 @@ function populateServiceSelect() {
     });
 }
 
-function getFromHeader(){
+/*function getFromHeader(){
 var token = getToken();
 var endpoint = 'users/me';
 var method = 'GET'
@@ -201,6 +201,7 @@ var from = "";
 }
     PDRequest(token, endpoint, method, options);
    }
+*/
 
 function resolveIncident() {
     var token = getToken();
