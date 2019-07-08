@@ -29,8 +29,8 @@ function generateRandomState(length) {
 function requestOAuthToken() {
     var state = generateRandomState(16);
     window.localStorage.setItem('pdClientState', state);
-    var clientId = "cce46eeac88f5d9195501368d47b71444dbeff04d74ae4df804b61c6f64d7517";
-    var redirectUri = "https://lisa-yang12.github.io/";
+    var clientId = "ca960f86bd26886b8a111808b759bfe08d56f03dcfb6c0249981e85ce287ef14";
+    var redirectUri = "https://sjipdintegration.blob.core.windows.net/pd-integration";
     var oauthRoute = "https://app.pagerduty.com/oauth/authorize?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&response_type=token&state=" + state;
     window.location.href = oauthRoute;
 }
