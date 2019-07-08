@@ -77,7 +77,7 @@ var id = output.split('/');
 }
 
 function PDRequest(token, endpoint, method, options) {
-    var from = "lyang@pagerduty.com";
+    var from = "snow@signet.com";
     var merged = $.extend(true, {}, {
             type: method,
             //dataType: "json",
