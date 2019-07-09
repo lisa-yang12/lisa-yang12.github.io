@@ -30,7 +30,7 @@ function requestOAuthToken() {
     var state = generateRandomState(16);
     window.localStorage.setItem('pdClientState', state);
     var clientId = "ca960f86bd26886b8a111808b759bfe08d56f03dcfb6c0249981e85ce287ef14";
-    var redirectUri = "https://sjipdintegration.blob.core.windows.net/pd-integration";
+    var redirectUri = "https://sjipdintegration.blob.core.windows.net/pd-integration/index.html";
     var oauthRoute = "https://app.pagerduty.com/oauth/authorize?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&response_type=token&state=" + state;
     window.location.href = oauthRoute;
 }
