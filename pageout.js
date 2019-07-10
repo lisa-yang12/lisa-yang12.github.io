@@ -215,7 +215,8 @@ function resolveIncident() {
 function main() {
     $('#login').click(function(e) {
         requestOAuthToken();
-        window.top.location.reload();
+        console.log("refreshing page");
+        window.parent.location.reload();
     });
     $('#logout').click(function(e) {
         removeOAuthToken();
