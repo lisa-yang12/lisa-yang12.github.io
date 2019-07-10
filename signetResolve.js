@@ -77,7 +77,7 @@ var id = output.split('/');
 }
 
 function PDRequest(token, endpoint, method, options) {
-    var from = "snow@signet.com";
+    var fromUser = "snow@signet.com";
     var merged = $.extend(true, {}, {
             type: method,
             //dataType: "json",
@@ -85,7 +85,7 @@ function PDRequest(token, endpoint, method, options) {
             headers: {
                 "Authorization": "Bearer " + token,
                 "Accept": "application/vnd.pagerduty+json;version=2",
-                "From": from, //needs to be more dynamic
+                "From": fromUser, //needs to be more dynamic
                 "Content-Type": "application/json"
             },
             error: function(err, textStatus) {
