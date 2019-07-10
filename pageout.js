@@ -215,6 +215,7 @@ function resolveIncident() {
 function main() {
     $('#login').click(function(e) {
         requestOAuthToken();
+        window.top.location.reload();
     });
     $('#logout').click(function(e) {
         removeOAuthToken();
