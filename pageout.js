@@ -33,8 +33,6 @@ function requestOAuthToken() {
     var redirectUri = "https://lisa-yang12.github.io/";
     var oauthRoute = "https://app.pagerduty.com/oauth/authorize?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&response_type=token&state=" + state;
     window.location.href = oauthRoute;
-    console.log("Refreshing Page");
-    window.location.reload(true);
 }
 
 function getOAuthResponseParams() {
