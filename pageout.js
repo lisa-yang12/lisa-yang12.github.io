@@ -235,7 +235,8 @@ function main() {
         } else {
             // page load when being redirected from PagerDuty OAuth service
             receiveOAuthToken(oauthResponseParams);
-            document.location.reload(true);
+            console.log("Refreshing Page");
+            location.reload(true);
             $('#content').show();
             $('#logout').show();
             $('#login').hide();
