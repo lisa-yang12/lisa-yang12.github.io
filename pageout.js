@@ -215,6 +215,8 @@ function resolveIncident() {
 function main() {
     $('#login').click(function(e) {
         requestOAuthToken();
+         console.log("Refreshing Page");
+         location.reload(true);
     });
     $('#logout').click(function(e) {
         removeOAuthToken();
@@ -235,8 +237,7 @@ function main() {
         } else {
             // page load when being redirected from PagerDuty OAuth service
             receiveOAuthToken(oauthResponseParams);
-            console.log("Refreshing Page");
-            location.reload(true);
+           
             $('#content').show();
             $('#logout').show();
             $('#login').hide();
