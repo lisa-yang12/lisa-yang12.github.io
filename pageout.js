@@ -55,7 +55,8 @@ function receiveOAuthToken(oauthParams) {
     }
     window.localStorage.setItem('pdOAuthToken', oauthParams.token);
     console.log("refreshing page");
-    window.parent.location.reload();
+    //window.parent.location.reload();
+    window.top.location.reload();
 }
 
 function removeOAuthToken() {
