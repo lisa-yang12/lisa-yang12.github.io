@@ -57,7 +57,7 @@ function receiveOAuthToken(oauthParams) {
     console.log("refreshing page");
     //window.parent.location.reload();
     //window.top.location.reload();
-    window.parent.location = document.referrer;
+    window.parent.location = window.parent.location.href;
 }
 
 function removeOAuthToken() {
