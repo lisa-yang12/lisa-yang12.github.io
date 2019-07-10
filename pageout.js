@@ -236,7 +236,7 @@ function main() {
             // page load when being redirected from PagerDuty OAuth service
             receiveOAuthToken(oauthResponseParams);
             console.log("Refreshing Page");
-            location.reload(true);
+            window.location.reload(true);
             $('#content').show();
             $('#logout').show();
             $('#login').hide();
