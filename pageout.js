@@ -54,6 +54,8 @@ function receiveOAuthToken(oauthParams) {
         return;
     }
     window.localStorage.setItem('pdOAuthToken', oauthParams.token);
+    console.log("refreshing page");
+    window.parent.location.reload();
 }
 
 function removeOAuthToken() {
@@ -235,8 +237,7 @@ function main() {
         } else {
             // page load when being redirected from PagerDuty OAuth service
             receiveOAuthToken(oauthResponseParams);
-            console.log("refreshing page");
-            window.parent.location.reload();
+          
             $('#content').show();
             $('#logout').show();
             $('#login').hide();
