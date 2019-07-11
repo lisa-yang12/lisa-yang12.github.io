@@ -180,7 +180,7 @@ function resolveIncident() {
     console.log(problem);
     var body = {
         "note": {
-            "content": "from Resolve Form: {'problem:'" + "'" + problem + "'," + "'service:'" + "'" + service + "'," + "'change:'" + "'" + change + "'}"
+            "content": "from Resolve Form: {'problem':" + "'" + problem + "'," + "'service':" + "'" + service + "'," + "'change':" + "'" + change + "'}"
         }
     };
     if (change == "None" || service == "None" || problem == "None"){
